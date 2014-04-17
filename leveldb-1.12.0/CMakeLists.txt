@@ -1,6 +1,15 @@
+if ( ${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD" )
+    set( FREEBSD true )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DOS_FREEBSD" )
+    set( ENV{DBROOTDIR} /usr/local/include/db6 )
+    FIND_PACKAGE( BerkeleyDB )
+    #    include_directories(/usr/local/include/db46)
+endif()
+
+
 set( CMAKE_CXX_SOURCE_FILE_EXTENSIONS .cpp .cc )
 if(APPLE)
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -stdlib=libc++" ) 
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -stdlib=libc++" )
 endif(APPLE)
 
 set( sources 
